@@ -42,7 +42,6 @@ export default async function handler(
     );
 
     console.log('debug1');
-
     program.provider.connection.getAccountInfo(sequence).then((y) => {
       if (y !== null) {
         const numberSq = JSON.parse(JSON.stringify(y?.data)) as sqData;
@@ -58,6 +57,7 @@ export default async function handler(
               ).toString('hex')}`;
 
               console.log('debug3');
+              res.status(200).send('Finished');
               const privateKey = ETH_PRIVATE_KEY as string;
               const provider = new ethers.providers.WebSocketProvider(
                 ETH_NODE_URL
@@ -70,9 +70,10 @@ export default async function handler(
               );
 
               console.log('debug4');
+              res.status(200).send('Finished');
               contract.receiveMessage(hexString).then((tx: any) => {
-
-                console.log("debug5");
+                console.log('debug5');
+                res.status(200).send('Finished');
                 tx.wait().then((txResult: any) => console.log(txResult));
               });
             } else {
