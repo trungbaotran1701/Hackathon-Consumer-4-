@@ -3,6 +3,9 @@ export const APIKEY = process.env.APIKEY as string;
 
 export const NETWORK_URL = "https://data-seed-prebsc-1-s1.binance.org:8545/";
 
+export const ETH_NODE_URL =
+  'wss://eth-goerli.g.alchemy.com/v2/flDa5U0m2g843wmEXbvI1bB-vfQ3omms';
+
 export const ETH_CONTRACT_ADDRESS =
   "0xE99c5011975F86DaC57a5e5a759B07692C7a9DE2";
 

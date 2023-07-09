@@ -15,19 +15,19 @@
     "@solana/wallet-adapter-react": "^0.15.32",
     "@solana/wallet-adapter-wallets": "^0.19.16",
     "@solana/web3.js": "^1.76.0",
+    "@types/chai": "^4.3.0",
+    "@types/chai-as-promised": "^7.1.5",
     "@types/node": "20.1.7",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "antd": "^5.5.0",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
     "fs": "^0.0.1-security",
     "next": "13.4.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "5.0.4",
-    "web3": "^1.10.0",
-    "chai": "^4.3.4",
-    "@types/chai": "^4.3.0",
-    "chai-as-promised": "^7.1.1",
-    "@types/chai-as-promised": "^7.1.5"
+    "web3": "^1.10.0"
   }
 }

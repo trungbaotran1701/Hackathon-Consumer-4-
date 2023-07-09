@@ -1,21 +1,21 @@
-import { WalletAddContext } from "@/context/WalletContext";
-import { IDL } from "@/config/config";
+import { WalletAddContext } from '@/context/WalletContext';
+import { IDL } from '@/config/config';
 import {
   ConnectionProvider,
   WalletProvider,
   useConnection,
   useWallet,
-} from "@solana/wallet-adapter-react";
-import { CORE_BRIDGE_PID } from "@/helper";
-import { createSendMessageInstruction } from "@/needed";
-import { Helloworm } from "@/helloworm";
+} from '@solana/wallet-adapter-react';
+import { CORE_BRIDGE_PID } from '@/helper';
+import { createSendMessageInstruction } from '@/needed';
+import { Helloworm } from '@/helloworm';
 import {
   GlowWalletAdapter,
   MathWalletAdapter,
   PhantomWalletAdapter,
   SolflareWalletAdapter,
-} from "@solana/wallet-adapter-wallets";
-import { Transaction, clusterApiUrl } from "@solana/web3.js";
+} from '@solana/wallet-adapter-wallets';
+import { Transaction, clusterApiUrl } from '@solana/web3.js';
 import {
   Button,
   Col,
@@ -25,13 +25,13 @@ import {
   Space,
   Typography,
   message,
-} from "antd";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+} from 'antd';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 const { Text } = Typography;
-import * as anchor from "@project-serum/anchor";
-import { ethers } from "ethers";
-import { sign } from "crypto";
-import { createHellowormProgramInterface } from "@/needed";
+import * as anchor from '@project-serum/anchor';
+import { ethers } from 'ethers';
+import { sign } from 'crypto';
+import { createHellowormProgramInterface } from '@/needed';
 const SOLWalletsProvider = () => {
   const wallets = useMemo(
     () => [
@@ -42,7 +42,7 @@ const SOLWalletsProvider = () => {
     ],
     []
   );
-  const endpoint = useMemo(() => clusterApiUrl("devnet"), []);
+  const endpoint = useMemo(() => clusterApiUrl('devnet'), []);
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect={true}>
@@ -53,9 +53,9 @@ const SOLWalletsProvider = () => {
 };
 
 type MessageTransfer = {
-  from: ethers.Wallet["publicKey"];
-  to: ethers.Wallet["publicKey"];
-  tokenAddess: ethers.Wallet["publicKey"];
+  from: ethers.Wallet['publicKey'];
+  to: ethers.Wallet['publicKey'];
+  tokenAddess: ethers.Wallet['publicKey'];
   amount: number;
 };
 
@@ -85,27 +85,27 @@ const SOLWallets = () => {
   // console.log(balance);
 
   async function onSend() {
-    message.loading("Please wait and dont do anything....");
+    message.loading('Please wait and dont do anything....');
     if (publicKey !== null) {
       const connection = new anchor.web3.Connection(
-        anchor.web3.clusterApiUrl("devnet")
+        anchor.web3.clusterApiUrl('devnet')
       );
 
       const programId = new anchor.web3.PublicKey(
-        "GsTfE4Ndievuh8G5EWAPcS7aixwKyN5YdZNymq2cVfNV"
+        'GsTfE4Ndievuh8G5EWAPcS7aixwKyN5YdZNymq2cVfNV'
       );
 
       const program = createHellowormProgramInterface(connection, programId);
 
       const messageTransfer: MessageTransfer = {
-        from: metamaskAdd ?? "",
-        to: "0x86f93CdC9cD700C018AC0235D6eB249B38609A0f",
-        tokenAddess: "0xec171F51676B62127a4BdfB145944cf8e6fDe08c",
+        from: metamaskAdd ?? '',
+        to: '0x86f93CdC9cD700C018AC0235D6eB249B38609A0f',
+        tokenAddess: '0xec171F51676B62127a4BdfB145944cf8e6fDe08c',
         amount: 10000000000000000000,
       };
 
       const jsonString = JSON.stringify(messageTransfer);
-      let helloMessage = Buffer.from(jsonString, "utf8");
+      let helloMessage = Buffer.from(jsonString, 'utf8');
       helloMessage = Buffer.concat([
         Buffer.from(new Uint8Array([2])),
         helloMessage,
@@ -129,7 +129,7 @@ const SOLWallets = () => {
         const signedTx = await signTransaction(tx);
         const txId = await connection.sendRawTransaction(signedTx.serialize());
         const a = await connection.confirmTransaction(txId);
-        message.success("Success");
+        message.success('Success');
       }
     }
   }
@@ -137,12 +137,12 @@ const SOLWallets = () => {
   return !publicKey ? (
     <Row gutter={[8, 8]}>
       <Col span={24}>
-        <Text style={{ color: "white" }}> Connect to SOLANA with:</Text>
+        <Text style={{ color: 'white' }}> Connect to SOLANA with:</Text>
       </Col>
-      {wallets.filter((wallet) => wallet.readyState === "Installed").length >
+      {wallets.filter((wallet) => wallet.readyState === 'Installed').length >
       0 ? (
         wallets
-          .filter((wallet) => wallet.readyState === "Installed")
+          .filter((wallet) => wallet.readyState === 'Installed')
           .map((wallet) => (
             <Button
               // disabled={metamaskAdd === null ? true : false}
@@ -166,17 +166,17 @@ const SOLWallets = () => {
     </Row>
   ) : (
     <>
-      <Space direction="horizontal">
-        <Text style={{ color: "white" }}>Connected to:</Text>
+      <Space direction='horizontal'>
+        <Text style={{ color: 'white' }}>Connected to:</Text>
         <Text
           keyboard
           copyable
-          style={{ background: "white", padding: 8, borderRadius: 8 }}
+          style={{ background: 'white', padding: 8, borderRadius: 8 }}
         >
           {publicKey.toBase58()}
         </Text>
         <Button
-          type="primary"
+          type='primary'
           danger
           onClick={() => {
             disconnect();
@@ -187,7 +187,7 @@ const SOLWallets = () => {
         </Button>
         <Button
           disabled={phantomAdd === null || metamaskAdd === null}
-          type="primary"
+          type='primary'
           onClick={() => onSend()}
         >
           Send

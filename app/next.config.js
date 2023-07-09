@@ -9,7 +9,7 @@ module.exports = nextConfig
 module.exports = {
 
   env: {
-    APIKEY:"QKMDw_o8mWOB4z2V",
-    PRIVATE_KEY_WALLET:"0x35e506d99c8e985cc07c3c9286c12acab6f301f42e804ded4169f12d56c827c2"
+    APIKEY:"KJG-wyaBq6NGdkIz",
+    PRIVATE_KEY_WALLET:"0x07bb8829d8dd4f2d92b6369e15945da6cbea4c1ddb38f2a2559282649c482279"
   },
 }
