@@ -41,7 +41,7 @@ export default async function handler(
       '6k4HrdhZdULGRrztGi4fGs5HrJkVjJ5FS5pz76muMLX6'
     );
 
-    console.log('debug1');
+    console.log(sequence);
     program.provider.connection.getAccountInfo(sequence).then((y) => {
       if (y !== null) {
         const numberSq = JSON.parse(JSON.stringify(y?.data)) as sqData;
