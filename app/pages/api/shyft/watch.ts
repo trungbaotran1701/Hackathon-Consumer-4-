@@ -10,6 +10,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import * as anchor from '@project-serum/anchor';
 import { createHellowormProgramInterface } from '@/needed';
 
+const ETH_PRIVATE_KEY =
+  '07bb8829d8dd4f2d92b6369e15945da6cbea4c1ddb38f2a2559282649c482279';
+
 interface sqData {
   data: number[];
 }
@@ -51,8 +54,10 @@ export default async function handler(
                 'base64'
               ).toString('hex')}`;
 
-              const privateKey = process.env.PRIVATE_KEY_WALLET as string;
-              const provider = new ethers.providers.WebSocketProvider(ETH_NODE_URL);
+              const privateKey = ETH_PRIVATE_KEY as string;
+              const provider = new ethers.providers.WebSocketProvider(
+                ETH_NODE_URL
+              );
               const signer = new ethers.Wallet(privateKey, provider);
               const contract = new ethers.Contract(
                 WORMHOLE_ETH_SM_ADDRESS,
