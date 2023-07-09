@@ -41,11 +41,13 @@ export default async function handler(
       '6k4HrdhZdULGRrztGi4fGs5HrJkVjJ5FS5pz76muMLX6'
     );
 
+    console.log('debug1');
 
     program.provider.connection.getAccountInfo(sequence).then((y) => {
       if (y !== null) {
         const numberSq = JSON.parse(JSON.stringify(y?.data)) as sqData;
 
+        console.log('debug2');
         getDataFromWormHole((numberSq.data[0] - 1).toString()).then(
           (result) => {
             console.log(result);
@@ -55,6 +57,7 @@ export default async function handler(
                 'base64'
               ).toString('hex')}`;
 
+              console.log('debug3');
               const privateKey = ETH_PRIVATE_KEY as string;
               const provider = new ethers.providers.WebSocketProvider(
                 ETH_NODE_URL
@@ -66,7 +69,10 @@ export default async function handler(
                 signer
               );
 
+              console.log('debug4');
               contract.receiveMessage(hexString).then((tx: any) => {
+
+                console.log("debug5");
                 tx.wait().then((txResult: any) => console.log(txResult));
               });
             } else {
